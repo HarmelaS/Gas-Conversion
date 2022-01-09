@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <title>Gas Mileage Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+        function calcGas() {
+
+            // if (validateInput() == false) {
+            //     return;
+
+            // }
+
+            validateInput();
+
+            start = parseFloat(document.getElementById("startMile").value);
+            end = parseFloat(document.getElementById("endMile").value);
+            gallons = parseFloat(document.getElementById("gal").value);
+            var result = ((end - start)/gallons);
+            
+            result = result.toFixed(2);
+            document.getElementById("gasResult").value = result;
+
+
+            if (isNaN(result)) {
+                    document.getElementById("gasResult").value = "";
+                    return;
+                }
+        }
+
+        function validateInput() {
+            // var startingMilage = document.getElementById("startMile").value;
+            // if (startingMilage.length == 0) {
+            //     alert("Did it work???");
+            //     return false;
+            // }
+
+            var input1 = document.getElementById("startMile");
+            var input2 = document.getElementById("endMile");
+            var input3 = document.getElementById("gal");
+            var input4 = document.getElementById("gasResult");
+
+            var inputError = [input1,input2,input3];
+            var i;
+            for (i = 0; i < inputError.length; i++) {
+                if (inputError[i].value.length < 1) {
+                    inputError[i].style.color = "red";
+                    inputError[i].value="Value Required";
+                }
+
+            }
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="gasBg">
+        <form name="gasForm" class="test">
+            <h1 class="header">Gas Mileage Calculator</h1>
+            <div class="inputArea">
+                
+                <label class="inputLabel">Starting Mileage:</label>
+                    <input type="text" id="startMile" class="gasInput" onfocus="this.value=''" placeholder="Mileage at start of trip."/><br><br>
+                <label class="inputLabel">Ending Mileage:</label>
+                    <input type="text" id="endMile" class="gasInput" onfocus="this.value=''" placeholder="Mileage at end of trip."/><br><br>
+                <label class="inputLabel">Gallons Used ($):</label>
+                    <input type="text" id="gal" class="gasInput" onfocus="this.value=''" placeholder="Total cost of gallons used." /><br><br>
+            </div>
+
+            <div class="mileCalc">
+                <input type="button" onClick="calcGas()" value="Convert" />
+                <label class="inputLabel" style="width: 130px;">Miles Per Gallon:</label><input type="text" id="gasResult" />
+            </div>
+        </form>
+
+    </div>
+</body>
+
+</html>
